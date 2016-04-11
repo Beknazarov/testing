@@ -34,3 +34,6 @@ bpython
 # Admin
 django-debug-toolbar
 
+# Emailsending
+sendgrid-django
+

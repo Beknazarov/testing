@@ -22,7 +22,9 @@ DEV = True
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'sgbackend.SendGridBackend'
+SENDGRID_API_KEY = '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'
 ########## END EMAIL CONFIGURATION
 
 

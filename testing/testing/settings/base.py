@@ -198,6 +198,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sendgrid',
 
     # Useful template tags:
     # 'django.contrib.humanize',
