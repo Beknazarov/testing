@@ -10,7 +10,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'', include('base.urls')),
-    # url(r'^accounts/', include('accounts.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     # url(r'^profiles/', include('profiles.urls', namespace='profile')),
     url(r'^admin/', include(admin.site.urls)),
 
