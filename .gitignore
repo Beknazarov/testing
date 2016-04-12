@@ -39,6 +39,6 @@ Thumbs.db
 Desktop.ini
 
 .idea
-testing_kg/testing_kg/settings/local.py
+testingkg/testingkg/settings/local.py
 
 media/
