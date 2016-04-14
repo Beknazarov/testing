@@ -1,5 +1,39 @@
-from __future__ import unicode_literals
-
+# coding=utf-8
 from django.db import models
+from django.template.defaultfilters import date
+from django.utils.text import slugify
+from redactor.fields import RedactorField
+
+
+def image_upload_to(instance, filename):
+    title = instance.title
+    slug = slugify(title)
+    basename, file_extension = filename.split(".")
+    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    return "author/%s/%s" % (slug, new_filename)
 
 # Create your models here.
+
+
+class Test(models.Model):
+    title = models.CharField(max_length=100)
+    instruction = RedactorField(
+        upload_to=image_upload_to,
+        allow_file_upload=True,
+        allow_image_upload=True,
+        verbose_name='Текст'
+    )
+    category = models.ForeignKey('Category', blank=True)
+
+    def __unicode__(self):
+        return self.title
+
+
+class Category(models.Model):
+    class Meta():
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
