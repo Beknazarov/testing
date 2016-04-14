@@ -8,7 +8,6 @@ from redactor.fields import RedactorField
 def image_upload_to(instance, filename):
     title = instance.title
     slug = slugify(title)
-    basename, file_extension = filename.split(".")
     new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
     return "author/%s/%s" % (slug, new_filename)
 

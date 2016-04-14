@@ -37,3 +37,9 @@ django-debug-toolbar
 # Emailsending
 sendgrid-django
 
+
+# Awesome-Admin
+django-jet
+
+# Redactor
+django-wysiwyg-redactor
