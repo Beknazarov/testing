@@ -192,6 +192,8 @@ ROOT_URLCONF = '%s.urls' % SITE_NAME
 ########## APP CONFIGURATION
 DJANGO_APPS = (
     # Default Django apps:
+    'jet',
+    'redactor',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

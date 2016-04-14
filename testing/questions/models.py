@@ -24,6 +24,8 @@ class Question(models.Model):
         allow_image_upload=True,
         verbose_name='Текст')
     test = models.ForeignKey(Test)
+    created_at = models.DateTimeField(auto_now_add=True, null = True, blank = True)
+    updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)
     point = models.IntegerField()
     answer_type = models.CharField(choices=choices, max_length=20, null=True)
 
