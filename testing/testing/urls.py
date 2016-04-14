@@ -1,16 +1,16 @@
 """ Default urlconf for testingKg """
 
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
-
 
 
 admin.autodiscover()
 
 
 urlpatterns = [
+    url(r'^jet/', include('jet.urls', 'jet')),
     url(r'', include('base.urls')),
     url(r'^accounts/', include('accounts.urls')),
     # url(r'^profiles/', include('profiles.urls', namespace='profile')),

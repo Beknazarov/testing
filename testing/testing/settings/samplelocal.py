@@ -11,9 +11,6 @@ from .base import *
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-
 # Is this a development instance? Set this to True on development/master
 # instances and False on stage/prod.
 DEV = True
