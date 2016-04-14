@@ -8,7 +8,7 @@ from django.utils.text import slugify
 def image_upload_to(instance, filename):
     title = instance.title
     slug = slugify(title)
-    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    new_filename = "%s-%s.%s" % (slug, instance.id, filename)
     return "author/%s/%s" % (slug, new_filename)
 
 

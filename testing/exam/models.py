@@ -8,11 +8,10 @@ from redactor.fields import RedactorField
 def image_upload_to(instance, filename):
     title = instance.title
     slug = slugify(title)
-    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    new_filename = "%s-%s.%s" % (slug, instance.id, filename)
     return "author/%s/%s" % (slug, new_filename)
 
 # Create your models here.
-
 
 class Test(models.Model):
     title = models.CharField(max_length=100)
