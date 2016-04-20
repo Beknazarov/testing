@@ -10,7 +10,6 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    url(r'^jet/', include('jet.urls', 'jet')),
     url(r'', include('base.urls')),
     url(r'^accounts/', include('accounts.urls')),
     # url(r'^profiles/', include('profiles.urls', namespace='profile')),

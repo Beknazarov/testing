@@ -4,7 +4,7 @@ import datetime
 from models import UserActivationKey
 from django import forms
 from django.core.mail import send_mail
-from django.contrib.auth.models import User
+from profiles.models import MyUser
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -17,7 +17,7 @@ class RegistrationForm(UserCreationForm):
             self.fields[field].widget.attrs['placeholder'] = self.fields[field].label
 
     class Meta:
-        model = User
+        model = MyUser
         fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
 
     # Override of clean method for password check
@@ -33,7 +33,7 @@ class RegistrationForm(UserCreationForm):
 
     # Override of save method for saving both User and UserActivationKey objects
     def save(self, datas):
-        saveuser = User.objects.create_user(
+        saveuser = MyUser.objects.create_user(
                     username=datas['username'],
                     first_name=datas['first_name'],
                     last_name=datas['last_name'],

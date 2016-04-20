@@ -3,7 +3,7 @@ from django.db import models
 from django.template.defaultfilters import date
 from django.utils.text import slugify
 from redactor.fields import RedactorField
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 def image_upload_to(instance, filename):
@@ -14,8 +14,9 @@ def image_upload_to(instance, filename):
 
 # Create your models here.
 
+
 class Test(models.Model):
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
     title = models.CharField(max_length=100)
     instruction = RedactorField(
         upload_to=image_upload_to,
