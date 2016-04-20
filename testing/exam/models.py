@@ -17,12 +17,7 @@ def image_upload_to(instance, filename):
 class Test(models.Model):
     creator = models.ForeignKey(User)
     title = models.CharField(max_length=100)
-    instruction = RedactorField(
-        upload_to=image_upload_to,
-        allow_file_upload=True,
-        allow_image_upload=True,
-        verbose_name='Текст'
-    )
+    instruction = models.TextField(null=True, blank = True)
     category = models.ForeignKey('Category', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null = True, blank = True)
     updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)

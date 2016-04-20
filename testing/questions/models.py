@@ -19,10 +19,7 @@ class Question(models.Model):
         ('SelfAnswer', 'SelfAnswer'),
         ('Esse', 'Esse'),
     )
-    text = RedactorField(
-        allow_file_upload=True,
-        allow_image_upload=True,
-        verbose_name='Текст')
+    text = models.TextField(verbose_name='Текст', null=True,blank=True)
     test = models.ForeignKey(Test)
     created_at = models.DateTimeField(auto_now_add=True, null = True, blank = True)
     updated_at = models.DateTimeField(auto_now=True, null = True, blank = True)
@@ -34,26 +31,14 @@ class Question(models.Model):
 
 
 class ManyChoiceAnswer(models.Model):
-    variation = models.CharField(max_length=100, null=True, blank=True)
-    text = RedactorField(
-        upload_to=image_upload_to,
-        allow_file_upload=True,
-        allow_image_upload=True,
-        verbose_name='Текст')
+    text = models.TextField(verbose_name='Текст', null=True,blank=True)
     right = models.BooleanField()
     question = models.ForeignKey(Question)
 
-    def __unicode__(self):
-        return self.variation
-
-    def save(self, *args, **kwargs):
-        answers = ManyChoiceAnswer.objects.filter(question=self.question)
-        if self.variation.__len__() > 0:
-            super(ManyChoiceAnswer, self).save(*args, **kwargs)
-        else:
-            count = answers.count()
-            self.variation = chr(count + 65)
-            super(ManyChoiceAnswer, self).save(*args, **kwargs)
+class OneChoiceAnswer(models.Model):
+    text = models.TextField(verbose_name='Текст', null=True,blank=True)
+    right = models.BooleanField()
+    question = models.ForeignKey(Question)
 
 
 class TrueFalseAnswer(models.Model):
