@@ -19,7 +19,10 @@ def get_env_setting(setting):
         error_msg = "Set the %s env variable" % setting
         raise ImproperlyConfigured(error_msg)
 
-
+AUTH_USER_MODEL = 'profiles.MyUser'
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+)
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
 DJANGO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -158,7 +161,6 @@ TEMPLATES = [
                 'django.core.context_processors.csrf',
                 'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
             ],
             'debug': DEBUG
         },

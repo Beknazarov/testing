@@ -19,7 +19,7 @@ def signin(request):
         if user.is_active:
             login(request, user)
             message = "User is valid, active and authenticated"
-            return redirect('/admin/')  # Пока админ, потом в профиль
+            return redirect('/')  # Пока админ, потом в профиль
         else:
             message = "The password is valid, but the account has bees disabled"
     else:
@@ -43,11 +43,11 @@ def signup(request):
         if isinstance(usernamesalt, unicode):
             usernamesalt = usernamesalt.encode('utf8')
         datas['activation_key'] = hashlib.sha1(salt+usernamesalt).hexdigest()
-        form.emailActivation(datas)
+        # form.emailActivation(datas)
         form.save(datas)
         # Send email with activation key
 
-        return redirect('')  # /profiles/profile/
+        return redirect('/admin')  # /profiles/profile/
     return render(request, "accounts/signup.html", {'form': form})
 
 
