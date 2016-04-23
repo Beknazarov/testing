@@ -21,6 +21,14 @@ body {
 	</div>
   <a href="/test/edit/{{test.id}}/">
   <button class="btn_full">Edit test</button>
+
+</a>
+<a href="/question/new/{{test.id}}/">
+<button class="btn_full">Add question</button>
 </a>
 </div>
+{% for question in questions %}
+<a href="/question/show/{{question.id}}/">{{question.text}}</a>
+</div>
+{%endfor%}
 {% endblock %}

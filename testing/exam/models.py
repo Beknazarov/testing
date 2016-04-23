@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from redactor.fields import RedactorField
 from django.conf import settings
 
+
 def image_upload_to(instance, filename):
     title = instance.title
     slug = slugify(title)
@@ -12,6 +13,7 @@ def image_upload_to(instance, filename):
     return "author/%s/%s" % (slug, new_filename)
 
 # Create your models here.
+
 
 class Test(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,)
@@ -24,9 +26,8 @@ class Test(models.Model):
     def __unicode__(self):
         return self.title
 
-
 class Category(models.Model):
-    class Meta():
+    class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
     name = models.CharField(max_length=100)

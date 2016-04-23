@@ -15,7 +15,7 @@ urlpatterns = [
     # url(r'^profiles/', include('profiles.urls', namespace='profile')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^test/', include("exam.urls")),
-
+    url(r'^question/', include("questions.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

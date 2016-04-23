@@ -16,7 +16,6 @@ class Question(models.Model):
     choices = (
         ('Many', 'Many'),
         ('TrueFalse', 'TrueFalse'),
-        ('SelfAnswer', 'SelfAnswer'),
         ('Esse', 'Esse'),
     )
     text = models.TextField(verbose_name='Текст', null=True,blank=True)
@@ -29,28 +28,31 @@ class Question(models.Model):
     def __unicode__(self):
         return self.test.title
 
+    def save(self, *args, **kwargs):
+        super(Question, self).save()
+        if self.answer_type == 'TrueFalse':
+            trueFalseAnswers = TrueFalseAnswer.objects.filter(question_id = self.id)
+            if not trueFalseAnswers.count():
+                trueFalseAnswer = TrueFalseAnswer.objects.create(question = self)
+                trueFalseAnswer.save()
+        elif self.answer_type == 'Esse':
+            esse = CompositionAnswer.objects.filter(question_id = self.id)
+            if not esse.count():
+                esse = CompositionAnswer(question_id = self.id)
+                esse.save()
 
 class ManyChoiceAnswer(models.Model):
-    text = models.TextField(verbose_name='Текст', null=True,blank=True)
-    right = models.BooleanField()
-    question = models.ForeignKey(Question)
-
-class OneChoiceAnswer(models.Model):
-    text = models.TextField(verbose_name='Текст', null=True,blank=True)
+    text = models.CharField(max_length = 500,verbose_name='Текст', null=True,blank=True)
     right = models.BooleanField()
     question = models.ForeignKey(Question)
 
 
 class TrueFalseAnswer(models.Model):
     true = models.BooleanField(default=False)
-    false = models.BooleanField()
+    false = models.BooleanField(default = False)
     question = models.ForeignKey(Question)
 
 
 class CompositionAnswer(models.Model):
-    text = RedactorField(
-        upload_to=image_upload_to,
-        allow_file_upload=True,
-        allow_image_upload=True,
-        verbose_name='Текст')
+    text = models.TextField()
     question = models.ForeignKey(Question)

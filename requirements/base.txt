@@ -43,3 +43,6 @@ django-jet
 
 # Redactor
 django-wysiwyg-redactor
+
+#Bootstrap
+django-bootstrap3
