@@ -201,7 +201,7 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sendgrid',
-
+    'bootstrap3',
     # Useful template tags:
     # 'django.contrib.humanize',
 
